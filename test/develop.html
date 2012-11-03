@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>Test GreenDefine</title>
+        <script>(function(){
+            var xhr = new XMLHttpRequest;
+            xhr.onreadystatechange = function(){
+                if( xhr.readyState===4 ){
+                    xhr.onreadystatechange = function(){};
+                    (new Function('config', xhr.responseText))({
+                        base: '.',
+                        main: 'main',
+                        plugins: {
+                            cs: '../src/plugins/cs',
+                            xml: '../src/plugins/xml',
+                            text: '../src/plugins/text',
+                            defer: '../src/plugins/defer',
+                            global: '../src/plugins/global'
+                        },
+                        compile: {
+                            template: '../src/template',
+                            output: 'download',
+                            filename: 'compiled.js'
+
+                            /*
+                            output: 'submit',
+                            method: 'POST',
+                            field: 'code',
+                            url: 'http://127.0.0.1/'
+                            */
+                        },
+                        verbose: false
+                    });
+                }
+            };
+            xhr.open('GET', '../src/define.js?now='+Date.now());
+            xhr.send(null);
+        })()</script>
+    </head>
+    <body>
+    </body>
+</html>

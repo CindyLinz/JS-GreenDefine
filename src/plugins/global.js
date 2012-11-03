@@ -1,0 +1,37 @@
+define(function(load){
+    return function(url, define){
+        var code = '',
+            my_define_config = {
+                init: function(inited, child_define){
+                    if( child_define.compile && child_define.prop.gen ){
+                        code += child_define.prop.gen;
+                        delete define.prop.gen;
+                    }
+                    url.shift();
+                    if( url.length )
+                        go();
+                    else{
+                        if( define.compile ){
+                            define.prop.gen = code;
+                            define.prop.gen_type = 'global';
+                        }
+                        define([], function(load){ load(true) });
+                        define.init(null, define);
+                    }
+                    return true;
+                }
+            },
+            go = function(){
+                define.load(url[0], my_define_config, undefined);
+            },
+            i;
+
+        for( i in define )
+            if( !my_define_config[i] )
+                my_define_config[i] = define[i];
+        my_define_config.need = false;
+
+        url = url.split(',');
+        go();
+    };
+})

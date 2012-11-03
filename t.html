@@ -1,0 +1,31 @@
+<script>
+    function testA(){
+        function getF(){
+            return function(){};
+        }
+
+        var f = getF(), i;
+        for(i=0; i<1000000000; ++i)
+            f();
+    }
+
+    function testB(){
+        function getF(){
+            return new Function('');
+        }
+        var f = getF(), i;
+        for(i=0; i<1000000000; ++i)
+            f();
+    }
+
+    function test(name, t){
+        var b = Date.now();
+        t();
+        var e = Date.now();
+
+        console.log(name+': '+(e-b)/1000+'s');
+    }
+
+    test('Anonymous func', testA);
+    test('Function obj', testB);
+</script>
