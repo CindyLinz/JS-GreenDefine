@@ -250,7 +250,7 @@
             // 由 plugin 處理
             if( match = label.match(/^(.*?)!(.*)/) ){
                 if( config.plugins[match[1]] )
-                    plugin_label = config.plugins[match[1]];
+                    plugin_label = to_label(config.base, config.plugins[match[1]]);
                 else
                     plugin_label = to_label(config.base, match[1]); // plugin 總是從 base 找, 而不是 work_dir
                 if( module[plugin_label] )
@@ -282,6 +282,7 @@
         },
         
         main_define = {},
+        main_label,
         i;
 
     if( typeof config === 'undefined' )
@@ -301,20 +302,21 @@
                 console.log("loading... "+loading_name.join(', '));
         }, 5000);
 
-    load(config.main, main_define, function(){
+    main_label = to_label(config.base, config.main);
+    load(main_label, main_define, function(){
         if( config.compile ){
             if( config.verbose )
                 console.log("compiled:");
             module_prop[''] = {
                 need: true,
                 gen_type: 'defer',
-                defer: config.main,
+                defer: main_label,
                 seq: 0
             };
-            module_prop[config.main].resolves.push('');
+            module_prop[main_label].resolves.push('');
             if( config.verbose )
                 console.log(module_prop);
-            module['!ajax'](config.compile.template + '.js?now=' + Date.now(), function(xhr){
+            module['!ajax'](to_label(config.base, config.compile.template) + '.js?now=' + Date.now(), function(xhr){
                 var gen = '', prop,
                     json_array = function(arr, i, out){
                         out = [];
@@ -404,6 +406,6 @@
         }
         if( config.verbose )
             console.log("Compiling time: " + (Date.now()-start_time)*.001 + 's');
-        module[config.main]();
+        module[main_label]();
     });
 })()
