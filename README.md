@@ -13,6 +13,11 @@ BTW, my English skill is bad. It's welcome to point out
 any errornous writing in this document and help me
 to improve it.
 
+Version
+=======
+
+0\.01
+
 Features
 ========
 
