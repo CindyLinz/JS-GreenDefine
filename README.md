@@ -294,6 +294,7 @@ define(['defer!a'], function(a_proxy){
         a.go(); // use 'a'
     });
 });
+```
 
   The initialized module instance will be cached.
   All the "loading proxy function" invocation
@@ -377,27 +378,13 @@ define(['text!abc.txt', 'text!main.js'], function(abc_txt, main_js){
 define(['text!abc.txt', 'text!main.js'], function(abc_txt, main_js){
     // ...
 });
+```
 
 Plugin Development
 ==================
 
 Would you please just read the code and
 find out the mechanism? Writing English is killing me.. ><
-
-Module generation type
-----------------------
-
-+ global
-
-+ rvalue
-
-+ rdefine
-
-+ sdefine
-
-+ define
-
-+ defer
 
 Test (Example)
 ==============
