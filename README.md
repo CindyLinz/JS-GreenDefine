@@ -319,7 +319,7 @@ define(['defer!a', 'defer!b', 'defer!c'], function(a_proxy, b_proxy, c_proxy){
   With [CoffeeScript][], you'll get an funny code "shape" :p
 
 ```coffeescript
-define ['defer!a', 'defer!b', 'defer!c', (a_proxy, b_proxy, c_proxy) ->
+define ['defer!a', 'defer!b', 'defer!c'], (a_proxy, b_proxy, c_proxy) ->
     setImmediate -> a_proxy -> setImmediate -> b_proxy -> setImmediate -> c_proxy ->
 ```
 
