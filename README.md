@@ -361,6 +361,7 @@ define ['cs!other_cs_module', 'js_module'], (other_cs_module, js_module, load) -
 define(['text!abc.txt', 'text!main.js'], function(abc_txt, main_js){
     // ...
 });
+```
 
 + xml
 
@@ -446,7 +447,7 @@ Lincense
 Copyright 2012, Cindy Wang (CindyLinz)  
 Licensed under the MIT or GPL Version 2 licenses or GPL Version 3 licenses.
 
-Date: 2012.10.30
+Date: 2012.11.3
 
 [RequireJS]: http://requirejs.org/
 [RequireJS-defer]: https://github.com/CindyLinz/RequireJS-defer
