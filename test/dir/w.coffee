@@ -1,4 +1,5 @@
-define [], (load) ->
+define ['defer!cs!../o'], (o, load) ->
+    setTimeout o.preload, 500, ->
     console.log 'start w' if console
     setTimeout ->
         console.log 'done w' if console

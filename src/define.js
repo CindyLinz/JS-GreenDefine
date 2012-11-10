@@ -1,11 +1,11 @@
 /*!
- * Javascript GreenDefine library v0.01
+ * Javascript GreenDefine library v0.02
  * https://github.com/CindyLinz/JS-GreenDefine
  *
  * Copyright 2012, Cindy Wang (CindyLinz)
  * Licensed under the MIT or GPL Version 2 or GPL Version 3 licenses.
  *
- * Date: 2012.11.3
+ * Date: 2012.11.11
  */
 (function(){
     var start_time = Date.now(),
@@ -350,7 +350,7 @@
                             break;
 
                         case 'rdefine':
-                            gen += 'thunk['+prop.seq+']=function(i,d){ thunk['+prop.seq+'] = undefined; module['+prop.seq+']='+prop.gen+'; d='+JSON.stringify(map_seq(prop.resolves))+'; for(i=d.length-1; i>=0; --i) if( !--wait[d[i]] ) thunk[d[i]]() };\n';
+                            gen += 'rdefine('+prop.seq+','+JSON.stringify(map_seq(prop.resolves))+',function(){return '+prop.gen+'});\n';
                             break;
 
                         case 'define':

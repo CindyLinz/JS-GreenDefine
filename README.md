@@ -16,7 +16,7 @@ to improve it.
 Version
 =======
 
-0\.01
+0\.02
 
 Features
 ========
@@ -283,6 +283,16 @@ Buildin Plugins
   with a callback. The passed callback will be invoked when
   the module is ready.
 
+  There's also a **preload** method for background preloading since version 0\.02\.
+  If you invoke the proxy function directly, the plugin will
+  perform an aggressive load that push every loading process to start early
+  as long as possible. If you invoke the **proxy.preload** function instead,
+  the plugin will perform a casual load that queue up all the implied loading
+  process, runs one at a time, and makes a 50ms sleep between the processes.
+  That is, the normal way will result in a shorter loading time, but might
+  freeze the browser responding; the **preload** way will load much longer,
+  and might provide a better browser responding while loading.
+
   Take a look at the example below:
 
 ```javascript
@@ -310,14 +320,12 @@ define(['defer!a'], function(a_proxy){
 
 ```javascript
 define(['defer!a', 'defer!b', 'defer!c'], function(a_proxy, b_proxy, c_proxy){
-    setTimeout(a_proxy, 0, function(){
-        // We discard the instance here, because we just want to initialize it.
-        setTimeout(b_proxy, 0, function(){
-            setTimeout(c_proxy, 0, function(){
+    a_proxy.preload(function(){
+        b_proxy.preload(function(){
+            c_proxy.preload(function(){
             });
         });
     });
-    // Or better using setImmediate if your browser support it
 });
 ```
 
@@ -325,7 +333,7 @@ define(['defer!a', 'defer!b', 'defer!c'], function(a_proxy, b_proxy, c_proxy){
 
 ```coffeescript
 define ['defer!a', 'defer!b', 'defer!c'], (a_proxy, b_proxy, c_proxy) ->
-    setImmediate -> a_proxy -> setImmediate -> b_proxy -> setImmediate -> c_proxy ->
+    a_proxy.preload -> b_proxy.preload -> c_proxy.preload ->
 ```
 
   Note that the 'defer' behavior will only occur in the compiled mode.
@@ -439,7 +447,7 @@ Lincense
 Copyright 2012, Cindy Wang (CindyLinz)  
 Licensed under the MIT or GPL Version 2 licenses or GPL Version 3 licenses.
 
-Date: 2012.11.3
+Date: 2012.11.11
 
 [RequireJS]: http://requirejs.org/
 [RequireJS-defer]: https://github.com/CindyLinz/RequireJS-defer
