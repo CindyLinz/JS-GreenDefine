@@ -16,7 +16,7 @@ to improve it.
 Version
 =======
 
-0\.02
+0\.03
 
 Features
 ========
@@ -99,11 +99,13 @@ First setup
         // The base search directory
         base: 'src',
 
-        // The plugin map, you can add your own plugins.
+        // The plugin map, you can add your own plugins,
+        // or remove plugins which listed here but you don't need them.
         // The path should be relative to the base.
         // Omit the trailing '.js'.
         plugins: {
             cs: 'plugins/cs',
+            ls: 'plugins/ls',
             xml: 'plugins/xml',
             text: 'plugins/text',
             defer: 'plugins/defer',
@@ -342,8 +344,8 @@ define ['defer!a', 'defer!b', 'defer!c'], (a_proxy, b_proxy, c_proxy) ->
 
 + cs
 
-  This plugin allows you to define your module in [CoffeeScript][].
-  Before using this plugin, please download the [CoffeeScript] first,
+  This plugin allows you to define your modules in [CoffeeScript][].
+  Before using this plugin, please download the [CoffeeScript/extras/coffee-script.js] file first,
   and modify the **cs** plugin's source file to specify the
   correct path.
 
@@ -360,6 +362,32 @@ define(['cs!coffeescript_module'], function(coffeescript_module){
 ```coffeescript
 # Defining side
 define ['cs!other_cs_module', 'js_module'], (other_cs_module, js_module, load) ->
+    # ...
+    return result # if this is a synchronous module
+
+    load result # if this is an asynchronous module
+```
+
++ ls
+
+  This plugin is used to define your modules in [LiveScript][].
+  Before using this plugin, please download the [LiveScript/extras/livescript.js][] file,
+  and modify the **ls** plugin's source file to specify the
+  correct path.
+
+  When loading a [LiveScript][] written module,
+  omit the '.ls' in the path trail.
+
+```javascript
+// Importing side
+define(['cs!coffeescript_module'], function(coffeescript_module){
+    // ...
+});
+```
+
+```livescript
+# Defining side
+define ['ls!other_ls_module', 'js_module'], (other_ls_module, js_module, load) ->
     # ...
     return result # if this is a synchronous module
 
@@ -403,12 +431,13 @@ Test (Example)
 ==============
 
 The files in the test/ directory is a full running example,
-except that you should download [CoffeeScript][] and [jQuery][] yourself.
+except that you should download [CoffeeScript][], [LiveScript][], and [jQuery][] yourself.
 Through out this test example, you can learn the
 concrete usage.
 
-If you've download the whole repository, put the [CoffeeScript][] file
-as src/plugins/coffee-script.js, and put the [jQuery][] file
+If you've download the whole repository, put the [CoffeeScript/extras/coffee-script.js][] file
+as src/plugins/coffee-script.js, and put the [LiveScript/extras/livescript.js][] file
+as src/plugins/livescript.js, and put the [jQuery][] file
 as test/jquery.js .
 
 Open the browser on develop.html (you should have a web server).
@@ -447,9 +476,12 @@ Lincense
 Copyright 2012, Cindy Wang (CindyLinz)  
 Licensed under the MIT or GPL Version 2 licenses or GPL Version 3 licenses.
 
-Date: 2012.11.11
+Date: 2012.11.15
 
 [RequireJS]: http://requirejs.org/
 [RequireJS-defer]: https://github.com/CindyLinz/RequireJS-defer
 [CoffeeScript]: http://coffeescript.org/
+[CoffeeScript/extras/coffee-script.js]: http://coffeescript.org/extras/coffee-script.js
+[LiveScript]: http://livescript.net/
+[LiveScript/extras/livescript.js]: https://raw.github.com/gkz/LiveScript/master/extras/livescript.js
 [jQuery]: http://jquery.com/

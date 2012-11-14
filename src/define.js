@@ -1,11 +1,11 @@
 /*!
- * Javascript GreenDefine library v0.02
+ * Javascript GreenDefine library v0.03
  * https://github.com/CindyLinz/JS-GreenDefine
  *
  * Copyright 2012, Cindy Wang (CindyLinz)
  * Licensed under the MIT or GPL Version 2 or GPL Version 3 licenses.
  *
- * Date: 2012.11.11
+ * Date: 2012.11.15
  */
 (function(){
     var start_time = Date.now(),

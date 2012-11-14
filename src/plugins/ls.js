@@ -7,13 +7,15 @@
  *
  * Date: 2012.11.15
  */
-define(['!ajax', 'coffee-script'], function(ajax, cs, load){
-    load(function(url, define){
-        ajax(url+'.coffee?now='+Date.now(), function(xhr){
-            var code = cs.compile(xhr.responseText);
+define(['!ajax', 'global!livescript'], function(ajax){
+    var ls = window.LiveScript;
+    delete window.LiveScript;
+    return function(url, define){
+        ajax(url+'.ls?now='+Date.now(), function(xhr){
+            var code = ls.compile(xhr.responseText);
             if( define.compile )
                 define.prop.gen = code;
             define.init((new Function('define', code))(define), define);
         });
-    });
+    };
 })
