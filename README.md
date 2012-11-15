@@ -16,7 +16,7 @@ to improve it.
 Version
 =======
 
-0\.03
+0\.04
 
 Features
 ========
@@ -106,6 +106,7 @@ First setup
         plugins: {
             cs: 'plugins/cs',
             ls: 'plugins/ls',
+            cup: 'plugins/cup',
             xml: 'plugins/xml',
             text: 'plugins/text',
             defer: 'plugins/defer',
@@ -345,7 +346,7 @@ define ['defer!a', 'defer!b', 'defer!c'], (a_proxy, b_proxy, c_proxy) ->
 + cs
 
   This plugin allows you to define your modules in [CoffeeScript][].
-  Before using this plugin, please download the [CoffeeScript/extras/coffee-script.js] file first,
+  Before using this plugin, please download the [CoffeeScript/extras/coffee-script.js][] file first,
   and modify the **cs** plugin's source file to specify the
   correct path.
 
@@ -421,6 +422,38 @@ define(['text!abc.txt', 'text!main.js'], function(abc_txt, main_js){
 });
 ```
 
++ cup
+
+  This plugin integrates the [CoffeeCup][], an active fork of [CoffeeKup][],
+  a mark up as [CoffeeScript][].
+
+  To use this plugin, you should download [CoffeeCup/lib/coffeecup.js][] and
+  [CoffeeScript/extras/coffee-script.js] (this file is the same as when you use the **cs** plugin).
+  Then modify the **cup**'s source to assign the correct paths.
+
+  Use this plugin this way:
+
+  Defining the template:
+```coffeescript
+# template.coffee
+doctype 5
+html ->
+  head ->
+    meta charset: 'utf-8'
+    title "#{@title or 'Untitled'}"
+  body ->
+    h1 -> "Hello CoffeeCup"
+```
+
+  Using and rendering the template:
+```javascript
+define([..., 'cup!template', ...], function(..., template, ...){
+    ...
+    document.getElementsByTagName('body')[0].innerHTML = template( { title: 'Hi' } );
+    ...
+});
+```
+
 Plugin Development
 ==================
 
@@ -436,8 +469,9 @@ Through out this test example, you can learn the
 concrete usage.
 
 If you've download the whole repository, put the [CoffeeScript/extras/coffee-script.js][] file
-as src/plugins/coffee-script.js, and put the [LiveScript/extras/livescript.js][] file
-as src/plugins/livescript.js, and put the [jQuery][] file
+as src/plugins/coffee-script.js, put the [LiveScript/extras/livescript.js][] file
+as src/plugins/livescript.js, put the [CoffeeCup/lib/coffeecup.js][] file
+as src/plugins/coffeecup.js, and put the [jQuery][] file
 as test/jquery.js .
 
 Open the browser on develop.html (you should have a web server).
@@ -476,7 +510,7 @@ Lincense
 Copyright 2012, Cindy Wang (CindyLinz)  
 Licensed under the MIT or GPL Version 2 licenses or GPL Version 3 licenses.
 
-Date: 2012.11.15
+Date: 2012.11.16
 
 [RequireJS]: http://requirejs.org/
 [RequireJS-defer]: https://github.com/CindyLinz/RequireJS-defer
@@ -484,4 +518,7 @@ Date: 2012.11.15
 [CoffeeScript/extras/coffee-script.js]: http://coffeescript.org/extras/coffee-script.js
 [LiveScript]: http://livescript.net/
 [LiveScript/extras/livescript.js]: https://raw.github.com/gkz/LiveScript/master/extras/livescript.js
+[CoffeeCup]: https://github.com/gradus/coffeecup
+[CoffeeCup/lib/coffeecup.js]: https://raw.github.com/gradus/coffeecup/master/lib/coffeecup.js
+[CoffeeKup]: http://coffeekup.org/
 [jQuery]: http://jquery.com/

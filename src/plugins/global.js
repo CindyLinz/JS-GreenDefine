@@ -1,11 +1,11 @@
 /*!
- * Javascript GreenDefine library v0.03
+ * Javascript GreenDefine library v0.04
  * https://github.com/CindyLinz/JS-GreenDefine
  *
  * Copyright 2012, Cindy Wang (CindyLinz)
  * Licensed under the MIT or GPL Version 2 or GPL Version 3 licenses.
  *
- * Date: 2012.11.15
+ * Date: 2012.11.16
  */
 define(function(load){
     return function(url, define){
