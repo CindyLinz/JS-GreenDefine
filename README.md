@@ -466,7 +466,7 @@ Test (Example)
 ==============
 
 The files in the test/ directory is a full running example,
-except that you should download [CoffeeScript][], [LiveScript][], and [jQuery][] yourself.
+except that you should download [CoffeeScript][], [LiveScript][], [CoffeeCup][], and [jQuery][] yourself.
 Through out this test example, you can learn the
 concrete usage.
 
