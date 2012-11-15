@@ -434,6 +434,7 @@ define(['text!abc.txt', 'text!main.js'], function(abc_txt, main_js){
   Use this plugin this way:
 
   Defining the template:
+
 ```coffeescript
 # template.coffee
 doctype 5
@@ -446,6 +447,7 @@ html ->
 ```
 
   Using and rendering the template:
+
 ```javascript
 define([..., 'cup!template', ...], function(..., template, ...){
     ...
