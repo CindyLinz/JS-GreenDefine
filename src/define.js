@@ -53,7 +53,7 @@
                                 break;
 
                             case '..':
-                                if( out_seg.length > 0 ){
+                                if( out_seg.length > 0 && out_seg[out_seg.length-1] !== '..' ){
                                     out_seg.pop();
                                     break;
                                 }
@@ -68,7 +68,7 @@
                                 break;
 
                             case '..':
-                                if( out_seg.length > 0 ){
+                                if( out_seg.length > 0 && out_seg[out_seg.length-1] !== '..' ){
                                     out_seg.pop();
                                     break;
                                 }
