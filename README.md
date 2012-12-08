@@ -16,7 +16,7 @@ to improve it.
 Version
 =======
 
-0\.04
+0\.05
 
 Features
 ========
@@ -512,7 +512,7 @@ Lincense
 Copyright 2012, Cindy Wang (CindyLinz)  
 Licensed under the MIT or GPL Version 2 licenses or GPL Version 3 licenses.
 
-Date: 2012.11.16
+Date: 2012.12.8
 
 [RequireJS]: http://requirejs.org/
 [RequireJS-defer]: https://github.com/CindyLinz/RequireJS-defer
