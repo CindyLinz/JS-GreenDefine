@@ -16,7 +16,7 @@ to improve it.
 Version
 =======
 
-0\.05
+0\.06
 
 Features
 ========
@@ -129,19 +129,9 @@ First setup
             template: 'template',
 
             // Output the compiled code by a download link
-            //
-            //  Note that if you are using Chrome or Chromium,
-            //  there is a bug:
-            //  when the download size that larger than 2MB (or less)
-            //  will crash it when you click the download link.
-            //  ref: http://code.google.com/p/chromium/issues/detail?id=103234
-            //  The comment 3's gist link is mine.
-            //
-            //  If you are using Internet Explorer, don't use download link.
-            //  Because I was lazy to implement UTF-8 and base64 encoding
-            //  DataURI, the only format that IE support.
             output: 'download',
             filename: 'compiled.js',
+              // the filename field is not working on some browsers such as IE and Firefox
 
             // Or, output the compiled code by a form submit
             //  You should implement something like a CGI to collect the result.
@@ -512,7 +502,7 @@ Lincense
 Copyright 2012, Cindy Wang (CindyLinz)  
 Licensed under the MIT or GPL Version 2 licenses or GPL Version 3 licenses.
 
-Date: 2012.12.8
+Date: 2012.12.21
 
 [RequireJS]: http://requirejs.org/
 [RequireJS-defer]: https://github.com/CindyLinz/RequireJS-defer

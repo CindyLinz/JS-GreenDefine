@@ -1,11 +1,11 @@
 /*!
- * Javascript GreenDefine library v0.05
+ * Javascript GreenDefine library v0.06
  * https://github.com/CindyLinz/JS-GreenDefine
  *
  * Copyright 2012, Cindy Wang (CindyLinz)
  * Licensed under the MIT or GPL Version 2 or GPL Version 3 licenses.
  *
- * Date: 2012.12.8
+ * Date: 2012.12.21
  */
 (function(){
     var start_time = Date.now(),
@@ -373,8 +373,10 @@
                         out_link.style.position = 'absolute';
                         out_link.style.left = '0px';
                         out_link.style.top = '0px';
-                        out_link.innerHTML = 'download (size='+gen.length+')';
-                        out_link.href = 'data:application/octet-stream;charset=UTF-8,' + encodeURIComponent(gen);
+                        var blob = new Blob([gen], { type: 'text/plain' });
+                        var url = (window.URL||window.webkitURL).createObjectURL(blob);
+                        out_link.innerHTML = 'download (size='+blob.size+')';
+                        out_link.href = url;
                         out_link.download = config.compile.filename;
                         document.getElementsByTagName('body')[0].appendChild(out_link);
                         break;
