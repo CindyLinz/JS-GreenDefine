@@ -8,8 +8,8 @@
  * Date: 2012.12.21
  */
 define(['!ajax', 'global!livescript'], function(ajax){
-    var ls = window.LiveScript;
-    delete window.LiveScript;
+    var ls = window.require('LiveScript');
+    delete window.require;
     return function(url, define){
         ajax(url+'.ls?now='+Date.now(), function(xhr){
             var code = ls.compile(xhr.responseText);
