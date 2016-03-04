@@ -14,6 +14,8 @@ define(function(load){
                 init: function(inited, child_define){
                     if( child_define.compile && child_define.prop.gen ){
                         code += child_define.prop.gen;
+                        if( code.length>0 && code[code.length-1]!='\n' )
+                          code += '\n';
                         delete define.prop.gen;
                     }
                     url.shift();
