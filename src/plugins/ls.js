@@ -12,7 +12,14 @@ define(['!ajax', 'global!livescript'], function(ajax){
     delete window.require;
     return function(url, define){
         ajax(url+'.ls?now='+Date.now(), function(xhr){
-            var code = ls.compile(xhr.responseText);
+            var code;
+            try{
+              code = ls.compile(xhr.responseText);
+            }catch( e ){
+              console.log(xhr.responseText);
+              console.error(e);
+              throw e;
+            }
             if( define.compile )
                 define.prop.gen = code;
             define.init((new Function('define', code))(define), define);
