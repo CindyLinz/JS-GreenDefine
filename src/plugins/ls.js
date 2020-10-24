@@ -8,7 +8,7 @@
  * Date: 2012.12.21
  */
 define(['!ajax', 'global!livescript'], function(ajax){
-    var ls = window.require('LiveScript');
+    var ls = window.require('livescript');
     delete window.require;
     return function(url, define){
         ajax(url+'.ls?now='+Date.now(), function(xhr){
