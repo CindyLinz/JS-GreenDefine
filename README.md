@@ -371,7 +371,7 @@ define ['cs!other_cs_module', 'js_module'], (other_cs_module, js_module, load) -
 
 ```javascript
 // Importing side
-define(['cs!coffeescript_module'], function(coffeescript_module){
+define(['ls!livescript_module'], function(livescript_module){
     // ...
 });
 ```
